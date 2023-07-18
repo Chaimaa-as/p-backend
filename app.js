@@ -1,6 +1,6 @@
 // Importer package mongoose
 const mongoose = require("mongoose");
-
+mongoose.set("strictQuery", true);
 // Importer package Express
 const express = require("express");
 // Créer Express app
@@ -34,7 +34,7 @@ const limiter = rateLimit({
 // Se connecter à la base de données avec id User et mot de passe
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.73rmxkv.mongodb.net/piiquante?retryWrites=true&w=majority`,
+    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.73rmxkv.mongodb.net/?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
@@ -44,6 +44,7 @@ mongoose
 app.use("/images", express.static(path.join(__dirname, "images")));
 // Intercepte ttes les requetes qui ont un content type json (idem "bodyParser")
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 // rend données exploitables
 app.use(bodyParser.json());
 
