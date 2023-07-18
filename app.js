@@ -86,6 +86,8 @@ app.get("/api/sauces/:id", (req, res, next) => {
     .catch((error) => res.status(404).json({ error }));
 });
 
+app.use(express.static("frontend"));
+
 // Exporter pour pouvoir utiliser
 module.exports = app;
 
