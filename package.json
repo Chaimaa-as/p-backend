@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "build":"cd frontend && npm install"
+    "start": "node backend/server.js",
+    "build":"cd frontend && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
